@@ -1,0 +1,17 @@
+{
+  "name": "proxyscope-w1d1",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @proxyscope/core",
+    "test": "npm run test -w @proxyscope/core",
+    "test:run": "npm run test:run -w @proxyscope/core"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.9.3"
+  }
+}

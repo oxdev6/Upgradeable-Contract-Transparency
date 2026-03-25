@@ -1,7 +1,10 @@
 import type { GetStorageAtReturnType, PublicClient } from "viem";
 import type { Address } from "../utils/rpc";
-import { IMPLEMENTATION_SLOT, ADMIN_SLOT } from "./patterns";
-import { bytes32SlotToAddress } from "./readSlots";
+import { ADMIN_SLOT } from "./patterns";
+import {
+  bytes32SlotToAddress,
+  readImplementationAddress,
+} from "./readSlots";
 
 export interface ProxyDetectionResult {
   isProxy: boolean;
@@ -22,12 +25,10 @@ export async function detectProxy(
   client: PublicClient,
   contractAddress: Address,
 ): Promise<ProxyDetectionResult> {
-  const implementationSlotRaw = await client.getStorageAt({
-    address: contractAddress,
-    slot: IMPLEMENTATION_SLOT,
-  });
-  const implementationAddress = bytes32SlotToAddress(implementationSlotRaw);
+  const { implementationAddress, implementationSlotRaw } =
+    await readImplementationAddress(client, contractAddress);
 
+  // If implementation is empty, it's not an EIP-1967 proxy.
   if (!implementationAddress) {
     return {
       isProxy: false,

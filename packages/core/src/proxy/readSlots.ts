@@ -1,5 +1,10 @@
-import { getAddress, type GetStorageAtReturnType } from "viem";
+import {
+  getAddress,
+  type GetStorageAtReturnType,
+  type PublicClient,
+} from "viem";
 import type { Address } from "../utils/rpc";
+import { IMPLEMENTATION_SLOT } from "./patterns";
 
 export function bytes32SlotToAddress(
   value: GetStorageAtReturnType | null | undefined,
@@ -17,5 +22,28 @@ export function bytes32SlotToAddress(
   } catch {
     return null;
   }
+}
+
+/**
+ * Reads the EIP-1967 implementation slot and converts it to an address.
+ */
+export async function readImplementationAddress(
+  client: PublicClient,
+  contractAddress: Address,
+): Promise<{
+  implementationAddress: Address | null;
+  implementationSlotRaw: GetStorageAtReturnType;
+}> {
+  const implementationSlotRaw = await client.getStorageAt({
+    address: contractAddress,
+    slot: IMPLEMENTATION_SLOT,
+  });
+
+  const implementationAddress = bytes32SlotToAddress(implementationSlotRaw);
+
+  return {
+    implementationAddress,
+    implementationSlotRaw,
+  };
 }
 

@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { detectProxy } from "../src/proxy/detectProxy";
+import { readImplementationAddress } from "../src/proxy/readSlots";
 import {
   createMockClient,
   resetMockClient,
@@ -60,6 +61,20 @@ describe("Proxy Detection", () => {
       implAddress.toLowerCase(),
     );
     expect(result.adminAddress).toBeNull();
+  });
+
+  it("should extract implementation address from EIP-1967 slot", async () => {
+    const proxyAddress = testAddress(1);
+    const implAddress = testAddress(2);
+
+    const implSlotRaw = `0x${"0".repeat(24)}${implAddress.slice(2)}` as `0x${string}`;
+    mock.getStorageAt.mockResolvedValueOnce(implSlotRaw);
+
+    const { implementationAddress, implementationSlotRaw } =
+      await readImplementationAddress(mock.client, proxyAddress);
+
+    expect(implementationAddress?.toLowerCase()).toBe(implAddress.toLowerCase());
+    expect(implementationSlotRaw).toBe(implSlotRaw);
   });
 });
 

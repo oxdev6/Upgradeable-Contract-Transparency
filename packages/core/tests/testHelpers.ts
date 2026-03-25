@@ -6,18 +6,25 @@ export interface MockClient {
   client: PublicClient;
   getStorageAt: Mock;
   getBytecode: Mock;
+  readContract: Mock;
 }
 
 export function createMockClient(): MockClient {
   const getStorageAt = vi.fn();
   const getBytecode = vi.fn();
-  const client = { getStorageAt, getBytecode } as unknown as PublicClient;
-  return { client, getStorageAt, getBytecode };
+  const readContract = vi.fn();
+  const client = {
+    getStorageAt,
+    getBytecode,
+    readContract,
+  } as unknown as PublicClient;
+  return { client, getStorageAt, getBytecode, readContract };
 }
 
 export function resetMockClient(mock: MockClient): void {
   mock.getStorageAt.mockReset();
   mock.getBytecode.mockReset();
+  mock.readContract.mockReset();
 }
 
 /**

@@ -3,4 +3,6 @@ export type { Address } from "./utils/rpc";
 export { detectProxy } from "./proxy/detectProxy";
 export type { ProxyDetectionResult } from "./proxy/detectProxy";
 export { readImplementationAddress } from "./proxy/readSlots";
+export { classifyAdmin } from "./authority/classifyAdmin";
+export type { AdminClassification, AdminClassificationResult } from "./authority/classifyAdmin";
 

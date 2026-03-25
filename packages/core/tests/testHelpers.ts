@@ -5,16 +5,19 @@ import type { Address } from "../src/utils/rpc";
 export interface MockClient {
   client: PublicClient;
   getStorageAt: Mock;
+  getBytecode: Mock;
 }
 
 export function createMockClient(): MockClient {
   const getStorageAt = vi.fn();
-  const client = { getStorageAt } as unknown as PublicClient;
-  return { client, getStorageAt };
+  const getBytecode = vi.fn();
+  const client = { getStorageAt, getBytecode } as unknown as PublicClient;
+  return { client, getStorageAt, getBytecode };
 }
 
 export function resetMockClient(mock: MockClient): void {
   mock.getStorageAt.mockReset();
+  mock.getBytecode.mockReset();
 }
 
 /**

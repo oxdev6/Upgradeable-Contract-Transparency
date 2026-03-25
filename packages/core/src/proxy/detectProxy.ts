@@ -4,6 +4,7 @@ import { ADMIN_SLOT } from "./patterns";
 import {
   bytes32SlotToAddress,
   readImplementationAddress,
+  readAdminAddress,
 } from "./readSlots";
 
 export interface ProxyDetectionResult {
@@ -40,11 +41,10 @@ export async function detectProxy(
     };
   }
 
-  const adminSlotRaw = await client.getStorageAt({
-    address: contractAddress,
-    slot: ADMIN_SLOT,
-  });
-  const adminAddress = bytes32SlotToAddress(adminSlotRaw);
+  const { adminAddress, adminSlotRaw } = await readAdminAddress(
+    client,
+    contractAddress,
+  );
 
   return {
     isProxy: true,

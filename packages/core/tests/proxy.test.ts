@@ -1,6 +1,9 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { detectProxy } from "../src/proxy/detectProxy";
-import { readImplementationAddress } from "../src/proxy/readSlots";
+import {
+  readAdminAddress,
+  readImplementationAddress,
+} from "../src/proxy/readSlots";
 import {
   createMockClient,
   resetMockClient,
@@ -75,6 +78,20 @@ describe("Proxy Detection", () => {
 
     expect(implementationAddress?.toLowerCase()).toBe(implAddress.toLowerCase());
     expect(implementationSlotRaw).toBe(implSlotRaw);
+  });
+
+  it("should extract admin address from EIP-1967 slot", async () => {
+    const proxyAddress = testAddress(1);
+    const adminAddress = testAddress(3);
+
+    const adminSlotRaw = `0x${"0".repeat(24)}${adminAddress.slice(2)}` as `0x${string}`;
+    mock.getStorageAt.mockResolvedValueOnce(adminSlotRaw);
+
+    const { adminAddress: resolvedAdminAddress, adminSlotRaw: raw } =
+      await readAdminAddress(mock.client, proxyAddress);
+
+    expect(resolvedAdminAddress?.toLowerCase()).toBe(adminAddress.toLowerCase());
+    expect(raw).toBe(adminSlotRaw);
   });
 });
 

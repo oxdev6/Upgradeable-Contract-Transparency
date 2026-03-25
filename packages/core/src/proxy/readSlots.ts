@@ -4,7 +4,7 @@ import {
   type PublicClient,
 } from "viem";
 import type { Address } from "../utils/rpc";
-import { IMPLEMENTATION_SLOT } from "./patterns";
+import { ADMIN_SLOT, IMPLEMENTATION_SLOT } from "./patterns";
 
 export function bytes32SlotToAddress(
   value: GetStorageAtReturnType | null | undefined,
@@ -44,6 +44,29 @@ export async function readImplementationAddress(
   return {
     implementationAddress,
     implementationSlotRaw,
+  };
+}
+
+/**
+ * Reads the EIP-1967 admin slot and converts it to an address.
+ */
+export async function readAdminAddress(
+  client: PublicClient,
+  contractAddress: Address,
+): Promise<{
+  adminAddress: Address | null;
+  adminSlotRaw: GetStorageAtReturnType;
+}> {
+  const adminSlotRaw = await client.getStorageAt({
+    address: contractAddress,
+    slot: ADMIN_SLOT,
+  });
+
+  const adminAddress = bytes32SlotToAddress(adminSlotRaw);
+
+  return {
+    adminAddress,
+    adminSlotRaw,
   };
 }
 

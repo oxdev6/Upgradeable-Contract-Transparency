@@ -7,4 +7,6 @@ export { classifyAdmin } from "./authority/classifyAdmin";
 export type { AdminClassification, AdminClassificationResult } from "./authority/classifyAdmin";
 export { detectGnosisSafe } from "./authority/detectGnosisSafe";
 export type { GnosisSafeDetails } from "./authority/detectGnosisSafe";
+export { detectTimelockController } from "./authority/detectTimelockController";
+export type { TimelockControllerDetails } from "./authority/detectTimelockController";
 

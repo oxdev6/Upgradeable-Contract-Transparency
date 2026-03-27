@@ -34,6 +34,67 @@ ProxyScope answers:
 
 > **Who can upgrade this contract?**
 
+#### CLI usage
+
+From the repository root:
+
+```bash
+npm install
+npm run build
+```
+
+Run the inspector:
+
+```bash
+# Human-readable report
+npx proxyscope inspect 0xYourContract --chain 1
+
+# JSON output
+npx proxyscope inspect 0xYourContract --chain 1 --json
+```
+
+#### Simple proxy example
+
+Example command:
+
+```bash
+npx proxyscope inspect 0x1234567890abcdef1234567890abcdef12345678 --chain 1
+```
+
+Example output (trimmed):
+
+```text
+ProxyScope Report
+-----------------
+Contract: 0x1234567890abcdef1234567890abcdef12345678
+
+Proxy Type: EIP-1967
+Implementation: 0xabc...def
+Upgrade Authority: 0x111...222
+Authority Type: Externally Owned Account (EOA)
+```
+
+JSON example:
+
+```bash
+npx proxyscope inspect 0x1234567890abcdef1234567890abcdef12345678 --chain 1 --json
+```
+
+```json
+{
+  "proxy": {
+    "detected": true,
+    "type": "EIP-1967",
+    "implementation": {
+      "address": "0xabc...def"
+    },
+    "admin": {
+      "address": "0x111...222"
+    }
+  }
+}
+```
+
 ---
 
 ### UpgradeWatch

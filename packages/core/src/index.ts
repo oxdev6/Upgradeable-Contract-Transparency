@@ -16,4 +16,6 @@ export {
   DEFAULT_AUTHORITY_CHAIN_MAX_DEPTH,
 } from "./authority/traceAuthorityChain";
 export type { AuthorityChainNode } from "./authority/traceAuthorityChain";
+export type { GovernanceRisk, RiskLevel } from "./risk/riskModel";
+export { evaluateGovernanceRisk } from "./risk/evaluateGovernanceRisk";
 

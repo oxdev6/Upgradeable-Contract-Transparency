@@ -9,4 +9,11 @@ export { detectGnosisSafe } from "./authority/detectGnosisSafe";
 export type { GnosisSafeDetails } from "./authority/detectGnosisSafe";
 export { detectTimelockController } from "./authority/detectTimelockController";
 export type { TimelockControllerDetails } from "./authority/detectTimelockController";
+export { classifyAuthority } from "./authority/classifyAuthority";
+export type { AuthorityClassification, AuthorityType } from "./authority/classifyAuthority";
+export {
+  traceAuthorityChain,
+  DEFAULT_AUTHORITY_CHAIN_MAX_DEPTH,
+} from "./authority/traceAuthorityChain";
+export type { AuthorityChainNode } from "./authority/traceAuthorityChain";
 

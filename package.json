@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build -w @proxyscope/core",
+    "build": "npm run build -w @proxyscope/core && npm run build -w @proxyscope/cli",
     "test": "npm run test -w @proxyscope/core",
     "test:run": "npm run test:run -w @proxyscope/core"
   },

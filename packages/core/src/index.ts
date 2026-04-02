@@ -18,4 +18,6 @@ export {
 export type { AuthorityChainNode } from "./authority/traceAuthorityChain";
 export type { GovernanceRisk, RiskLevel } from "./risk/riskModel";
 export { evaluateGovernanceRisk } from "./risk/evaluateGovernanceRisk";
+export { inspectContractJson } from "./report/inspectContractJson";
+export type { ProxyScopeJsonReport, JsonAuthorityNode } from "./report/inspectContractJson";
 

@@ -95,6 +95,63 @@ npx proxyscope inspect 0x1234567890abcdef1234567890abcdef12345678 --chain 1 --js
 }
 ```
 
+#### Governance risk examples
+
+ProxyScope assigns a deterministic governance risk level based on the traced upgrade authority topology.
+
+EOA admin (Critical)
+
+```text
+Risk Level: Critical
+Summary: Upgrade authority is a single externally owned account
+Reasoning:
+  - Single key compromise risk: one compromised key enables immediate upgrades.
+  - No execution delay: upgrades can be applied immediately.
+  - No multisig protection: no threshold approval required.
+```
+
+Safe-only admin (High)
+
+```text
+Risk Level: High
+Summary: Upgrade authority is a multisig without timelock
+Reasoning:
+  - Multisig threshold enforced: multiple signers required.
+  - No execution delay: upgrades can be applied immediately after multisig approval.
+  - Coordinated signer risk: if threshold signers collude, upgrades proceed without delay.
+```
+
+Timelock admin (Low)
+
+```text
+Risk Level: Low
+Summary: Upgrade authority uses timelock
+Reasoning:
+  - Execution delay present: upgrades require waiting period before execution.
+  - Governance transparency: delay allows review of proposed changes.
+```
+
+Timelock + Safe admin (Low)
+
+```text
+Risk Level: Low
+Summary: Upgrade authority uses timelock with multisig
+Reasoning:
+  - Execution delay present: upgrades require waiting period before execution.
+  - Multisig approval required: threshold signers must approve.
+  - Governance transparency: delay allows community review of proposed changes.
+```
+
+Not upgradeable (VeryLow)
+
+```text
+Risk Level: VeryLow
+Summary: Contract is not upgradeable
+Reasoning:
+  - No proxy pattern detected at this address.
+  - Contract logic cannot be upgraded without redeployment.
+```
+
 ---
 
 ### UpgradeWatch

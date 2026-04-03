@@ -152,6 +152,22 @@ Reasoning:
   - Contract logic cannot be upgraded without redeployment.
 ```
 
+JSON risk object example:
+
+```json
+{
+  "risk": {
+    "level": "Critical",
+    "summary": "Upgrade authority is a single externally owned account",
+    "reasoning": [
+      "Single key compromise risk: one compromised key enables immediate upgrades.",
+      "No execution delay: upgrades can be applied immediately.",
+      "No multisig protection: no threshold approval required."
+    ]
+  }
+}
+```
+
 ---
 
 ### UpgradeWatch

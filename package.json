@@ -6,9 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build -w @proxyscope/core && npm run build -w @proxyscope/cli",
-    "test": "npm run test -w @proxyscope/core",
-    "test:run": "npm run test:run -w @proxyscope/core"
+    "build": "npm run build -w @proxyscope/core && npm run build -w @proxyscope/cli && npm run build -w @upgradewatch/core",
+    "test": "npm run test -w @proxyscope/core && npm run test -w @upgradewatch/core",
+    "test:run": "npm run test:run -w @proxyscope/core && npm run test:run -w @upgradewatch/core"
   },
   "devDependencies": {
     "@types/node": "^22.7.4",

@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "vitest",
-    "test:run": "vitest --run"
+    "test:run": "vitest --run",
+    "generate-dataset": "npm run build && node ./dist/dataset/runDataset.js"
   },
   "dependencies": {
     "viem": "^2.46.2"

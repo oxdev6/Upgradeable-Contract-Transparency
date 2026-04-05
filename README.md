@@ -181,6 +181,20 @@ Capabilities:
 - Build upgrade timelines
 - Generate datasets and reports
 
+#### Upgrade history dataset
+
+From the repository root (requires a working JSON-RPC URL):
+
+```bash
+# Ethereum only
+ETH_RPC="https://eth.llamarpc.com" FROM_BLOCK=18500000 npm run dataset:upgrade-history
+
+# Ethereum + Arbitrum (optional second chain)
+ETH_RPC="https://eth.llamarpc.com" ARB_RPC="https://arb1.arbitrum.io/rpc" FROM_BLOCK=18500000 npm run dataset:upgrade-history
+```
+
+This writes `datasets/upgrade-history-top20.json`, ranking the top 20 contracts (from the curated seed list) by total `Upgraded` / `AdminChanged` events across the configured chains.
+
 UpgradeWatch answers:
 
 > **When has this contract been upgraded?**

@@ -18,3 +18,12 @@ export type {
   ContractUpgradeIndex,
   IndexUpgradeHistoryOptions,
 } from "./indexUpgradeHistory";
+export { generateUpgradeHistoryDataset } from "./dataset/generateUpgradeHistoryDataset";
+export type {
+  UpgradeHistoryDataset,
+  UpgradeHistoryDatasetEntry,
+} from "./dataset/generateUpgradeHistoryDataset";
+export {
+  DEFAULT_UPGRADE_DATASET_SEEDS,
+  type SeedContract,
+} from "./dataset/seedContracts";

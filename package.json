@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w @proxyscope/core && npm run build -w @proxyscope/cli && npm run build -w @upgradewatch/core",
+    "build": "npm run build -w @proxyscope/core && npm run build -w @proxyscope/cli && npm run build -w @upgradewatch/core && npm run build -w @upgradewatch/api",
     "test": "npm run test -w @proxyscope/core && npm run test -w @upgradewatch/core",
     "test:run": "npm run test:run -w @proxyscope/core && npm run test:run -w @upgradewatch/core",
     "dataset:upgrade-history": "npm run generate-dataset -w @upgradewatch/core",
-    "dataset:single-key-risk": "npm run generate-single-key-dataset -w @upgradewatch/core"
+    "dataset:single-key-risk": "npm run generate-single-key-dataset -w @upgradewatch/core",
+    "build:api": "npm run build -w @upgradewatch/api",
+    "dev:api": "npm run dev -w @upgradewatch/api"
   },
   "devDependencies": {
     "@types/node": "^22.7.4",

@@ -1,0 +1,16 @@
+{
+  "name": "@upgradewatch/api",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "node dist/server.js"
+  },
+  "dependencies": {
+    "@proxyscope/core": "0.1.0",
+    "@upgradewatch/core": "0.1.0",
+    "viem": "^2.46.2"
+  }
+}

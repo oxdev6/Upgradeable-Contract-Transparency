@@ -27,3 +27,8 @@ export {
   DEFAULT_UPGRADE_DATASET_SEEDS,
   type SeedContract,
 } from "./dataset/seedContracts";
+export { generateSingleKeyRiskDataset } from "./dataset/generateSingleKeyRiskDataset";
+export type {
+  SingleKeyRiskDataset,
+  SingleKeyRiskDatasetEntry,
+} from "./dataset/generateSingleKeyRiskDataset";

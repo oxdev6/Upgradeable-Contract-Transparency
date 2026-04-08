@@ -8,9 +8,11 @@
     "build": "tsc -p tsconfig.json",
     "test": "vitest",
     "test:run": "vitest --run",
-    "generate-dataset": "npm run build && node ./dist/dataset/runDataset.js"
+    "generate-dataset": "npm run build && node ./dist/dataset/runDataset.js",
+    "generate-single-key-dataset": "npm run build && node ./dist/dataset/runSingleKeyRiskDataset.js"
   },
   "dependencies": {
+    "@proxyscope/core": "0.1.0",
     "viem": "^2.46.2"
   },
   "devDependencies": {
